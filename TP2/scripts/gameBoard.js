@@ -128,15 +128,10 @@ class gameBoard {
     changeTurn(){                   //Cambia el turno de jugador
         turn++;
         player=(turn%2)+1;
-        document.getElementById("turn").innerHTML= "<h3>Turno: Jugador " + player + "</h3>";
+        document.getElementById("turn").innerHTML= "<h2>Turno: Jugador " + player + "</h2>";
     }
 
-
-     //<------------------------------------------ line verification --------------------------------->
-
-
-
-    
+    //verify
     verifyLine(lastMoveX, lastMoveY){               //Verifica si hay o no linea vertical,horizontal o diagonal
         let vertical = false;
         let horizontal = false;

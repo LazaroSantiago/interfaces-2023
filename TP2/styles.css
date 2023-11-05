@@ -195,7 +195,7 @@ footer {
   box-shadow: none;
 }
 
-.launch-button {
+.launch-button{
   margin-left: 14px;
   background-color: var(--store);
   text-align: center;
@@ -261,7 +261,9 @@ footer {
 .cart-button:hover,
 .comment-button:hover,
 .share-button:hover,
-.btn:hover {
+.start-button:hover,
+.btn:hover,
+.token:hover {
   opacity: 0.7;
   cursor: pointer;
 }
@@ -1285,12 +1287,46 @@ section.loading-screen > div {
 }
 
 #restart{
-  margin: auto;
-/*   margin-left: auto;
+  margin-left: auto;
   margin-top: auto;
-  margin-bottom: auto; */
+  margin-bottom: auto;
+  margin-right: 20px;
 }
 
-.btn{
-  
+.col-6 > div{
+  margin-left: 20px;
+}
+
+.start-button{
+  width: 120px;
+  height: 50px;
+  background-color: var(--secondary-1);
+  border-radius: 4px;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.start-button > h2 {
+  margin: auto;
+  font-size: 20px;
+}
+
+.btn {
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary-1);
+  border-radius: 4px;
+}
+
+.btn > h2{
+  margin: auto;
+}
+
+td > h3{
+  margin: 0;
+  color: var(--white);
+}
+
+th, h2{
+  margin-right: 20px;
 }
