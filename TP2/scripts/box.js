@@ -1,7 +1,5 @@
 
 class box{
-    //si ya tomamos las variables aca... 
-    //no es redundante volver a declararlas localmente abajo?
     constructor (posX, posY, size){
         this.posX = posX;
         this.posY = posY;
@@ -19,7 +17,6 @@ class box{
         return this.posY;
     }
 
-    
     draw() {                 //Carga y dibuja una imagen en la posicion del box
         let posX = this.getPosX();
         let posY = this.getPosY();

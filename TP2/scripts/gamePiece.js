@@ -1,9 +1,9 @@
 "use strict"
 class gamePiece{
     constructor (posX, posY, size){
-        this.posX=posX;
-        this.posY=posY;
-        this.size=size;
+        this.posX = posX;
+        this.posY = posY;
+        this.size = size;
         this.player = 0;
     }
 
