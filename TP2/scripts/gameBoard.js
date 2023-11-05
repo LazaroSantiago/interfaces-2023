@@ -1,6 +1,5 @@
 "use strict";
 
-
 //let juego =[];
 class gameBoard {
     constructor(x,y) {
@@ -17,10 +16,10 @@ class gameBoard {
     win(){                              //Cuando un jugador gana se borran los montones de fichas
                                         //y se muestra en pantalla un mensaje
         clearInterval(timer);
-        figuras= [];
+        figuras = [];
         drawFig();
-        document.getElementById("info").innerHTML = "<h1>GANADOR: JUGADOR"+ player +"!!!</h1>"
-        console.log("gano")
+        document.getElementById("info").innerHTML = "<h1>GANADOR: JUGADOR "+ player +"!</h1>"
+        // console.log("gano")
     }
 
     finish(){
@@ -31,67 +30,58 @@ class gameBoard {
 
     checkTie(){                         //Verifica si quedan todavia fichas para jugar
                                         // de no ser asi es un empate
-        if (figuras.length==0) {
-            document.getElementById("info").innerHTML = "<h1>EMPATE TODOS GANAN!!!</h1>"
-        }
+        if (figuras.length==0)
+            document.getElementById("info").innerHTML = "<h1>EMPATE, TODOS GANAN!</h1>"
     }
 
     isInDropbox(x,y){                   //Verifica si las coordenadas recibidas por parametro
                                         //se encuentran en la zona de jugada
-        if ((x>this.dropboxX && x<this.dropboxMaxX) && (y>this.dropboxY && y<this.dropboxMaxY)){
+        if ((x > this.dropboxX && x < this.dropboxMaxX) && 
+            (y > this.dropboxY && y < this.dropboxMaxY))
             return true;
-        }else return false;
+        return false;
     }
 
     dropboxMove(player,x){              //Lleva a cabo la jugada en base a la posicion recibida
                                         //y devuelve la posicion en la que se coloco la ficha
                                         //o -1 si no habia lugar para colocar una ficha
-        let aux =x-this.dropboxX;
+        let aux = x - this.dropboxX;
         let pos = Math.floor(aux/this.size);
-        let isMove = this.move(player,pos);
-        if (isMove){
+        let isMove = this.move(player, pos);
+        if (isMove)
             return pos;
-        }
-        else{
+        else
             return -1;
-        }
     }
-
-
 
     getSize(){
         return this.size;
     }
         
     buildBoard(){                      //Carga la matriz del tablero
-    
-        for ( let i=0; i< this.maxX; i++ ) {
+        for (let i=0; i < this.maxX; i++ ) {
             this.board[i] = [];
-        
-            for ( let j=0; j<this.maxY; j++){
+            for (let j = 0; j < this.maxY; j++){
                 this.board[i][j] = new box (((i*this.size)+block),j*this.size,this.size)
                 //this.board[i][j].draw();
             }
         }
-        
     }
 
     drawBoard(){                       //Dibuja el tablero en el canvas
         for ( let i=0; i< this.maxX; i++ ) {
           //  this.board[i] = [];
-        
             for ( let j=0; j<this.maxY; j++){
                 const thisbox=this.board[i][j]
                    this.board[i][j].draw();
-                 
             }
         }
         
     }
 
     drawTokens() {                     //Dibuja las fichas en el tablero
-        for ( let i=0; i< this.maxX; i++ ) {    
-            for ( let j=0; j<this.maxY; j++){
+        for (let i = 0; i < this.maxX; i++ ) {    
+            for ( let j = 0; j < this.maxY; j++){
                 this.board[i][j].token.draw();
             }
         }
@@ -99,14 +89,14 @@ class gameBoard {
 
     move(player, lastmoveX){            //Coloca las fichas en base al
                                         //movimiento elegido por el jugador
-        let place=0;
-        for(let i=0;i<this.maxY;i++){
-            let seted = false;
-            seted=this.board[lastmoveX][i].token.isSet();
-            if(seted&&i==0){
+        let place = 0;
+        for(let i = 0;i < this.maxY; i++){
+            let set = false;
+            set = this.board[lastmoveX][i].token.isSet();
+            if(set && i==0){
                 return false;
             }
-            else if(seted){
+            else if(set){
                 place=i-1;
                 break;
             }
@@ -119,11 +109,12 @@ class gameBoard {
     }
 
     getLastMoveY(lastmoveX){                //Devuelve la fila en la que ya se encuentra una ficha
-        let place=0;
-        let seted = false;
+        let place = 0;
+        let set = false;
+
         for(let i=0;i<this.maxY;i++){
-            seted=this.board[lastmoveX][i].token.isSet();
-             if(seted){
+            set = this.board[lastmoveX][i].token.isSet();
+             if(set){
                 place=i;
                 break;
             }
@@ -137,7 +128,7 @@ class gameBoard {
     changeTurn(){                   //Cambia el turno de jugador
         turn++;
         player=(turn%2)+1;
-        document.getElementById("turn").innerHTML= "<h3>Turno: Jugador" + player + "</h3>";
+        document.getElementById("turn").innerHTML= "<h3>Turno: Jugador " + player + "</h3>";
     }
 
 
@@ -147,18 +138,17 @@ class gameBoard {
 
     
     verifyLine(lastMoveX, lastMoveY){               //Verifica si hay o no linea vertical,horizontal o diagonal
-        let ver = false;
-        let hor = false;
-        let dia = false;
-        ver = this.verifyVertical(lastMoveX);
-        hor = this.verifyHorizontal(lastMoveY);
-        dia = this.verifyDiagonal(lastMoveX, lastMoveY);
+        let vertical = false;
+        let horizontal = false;
+        let diagonal = false;
+        vertical = this.verifyVertical(lastMoveX);
+        horizontal = this.verifyHorizontal(lastMoveY);
+        diagonal = this.verifyDiagonal(lastMoveX, lastMoveY);
     
-        if (ver==true ||hor==true || dia==true)
-        return true;
-        else
+        if (vertical==true || horizontal==true || diagonal==true)
+            return true;
+
         return false;
-        
     }
     
     verifyVertical(lastMoveX){                      //Carga un arreglo con la columna 
@@ -167,11 +157,11 @@ class gameBoard {
         let x = lastMoveX;
         let line = [];
         let isLine = false
-           for (let y = 0; y < this.maxY; y++) {
+        for (let y = 0; y < this.maxY; y++) {
             line.push(this.board[x][y]);
-           }
-           isLine=this.isLine(line);
-           return isLine;
+        }
+        isLine = this.isLine(line);
+        return isLine;
     }
     
     verifyHorizontal(lastMoveY){                    //Carga un arreglo con la fila 
@@ -180,11 +170,12 @@ class gameBoard {
         let y = lastMoveY;
         let line = [];
         let isLine = false
-           for (let x = 0; x < this.maxX; x++) {
+        for (let x = 0; x < this.maxX; x++) {
             line.push(this.board[x][y]);
-           }
-           isLine=this.isLine(line);        
-           return isLine;
+        }
+
+        isLine = this.isLine(line);        
+        return isLine;
     }
     
     verifyDiagonal(lastMoveX, lastMoveY) {          //Carga un arreglo con la diagonal descendente 
@@ -196,63 +187,59 @@ class gameBoard {
         let y = 0;
         let line = [];
     
-        if (lastMoveX<lastMoveY) {
+        if (lastMoveX < lastMoveY) 
             y = lastMoveY - lastMoveX;
-        }
-        else if (lastMoveX>lastMoveY) {
+        else if (lastMoveX > lastMoveY)
             x = lastMoveX - lastMoveY;
-        }
+        
 
-        for (let i = 0; x+i < this.maxX && y+i < this.maxY; i++) {
+        for (let i = 0; (x+i < this.maxX) && (y+i < this.maxY); i++)
             line.push(this.board[x+i][y+i]);
-        }
-        console.log(line,lastMoveX,lastMoveY);
-        if (this.isLine(line)) {
+        
+        // console.log(line,lastMoveX,lastMoveY);
+        
+        if (this.isLine(line)) 
             return true;
-        }
-        else line = [];
-        console.log(line,lastMoveX,lastMoveY);
-        if ((lastMoveX+lastMoveY)>=this.maxX) {
-            x = this.maxX-1;
-            y = (lastMoveX+lastMoveY) - (this.maxX-1);
+        else 
+            line = [];
+
+        // console.log(line,lastMoveX,lastMoveY);
+        if ((lastMoveX + lastMoveY) >= this.maxX) {
+            x = this.maxX - 1;
+            y = (lastMoveX + lastMoveY) - (this.maxX-1);
         }
         else{
-            x = lastMoveX+lastMoveY;
+            x = lastMoveX + lastMoveY;
             y = 0;
         }
         
-        for (let i = 0; x-i >= 0 && y+i <this.maxY; i++) {
+        for (let i = 0; (x - i >= 0) && (y + i < this.maxY); i++) {
             line.push(this.board[x-i][y+i]);
-            console.log(line,x,y)
-            }
+            // console.log(line,x,y)
+        }
     
-        if (this.isLine(line)) {           
+        if (this.isLine(line))           
             return true;
-        }
-        
-        else {
+        else
             return false;
-        }
-        }
+    }
     
     isLine(line) {                                  //Recibe un arreglo y lo recorre verificando si hay una secuencia
                                                     //de fichas del mismo jugador igual a las necesarias para 
                                                     //ganar en el modo elegido
         let samePieces = 0;
         for (let i = 0; i < line.length-1; i++) {
-            
             if(line[i].token.player ==0){
                 samePieces=0;
-            }
-            else{
- 
+            } else {
                 if(line[i].token.player == line[i+1].token.player){
                     samePieces++;
+                } else {
+                    samePieces = 0;
                 }
-                else samePieces = 0;
-                if (samePieces == mode-1){
+
+                if (samePieces == mode-1)
                     return true;
-                };
             }
         }
         
@@ -260,5 +247,3 @@ class gameBoard {
     }
     
 }
-
-

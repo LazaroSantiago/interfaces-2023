@@ -1240,9 +1240,10 @@ section.loading-screen > div {
   
   display: flex;
 }
+/*  
 .wrapper > div:target {
-/*   transform: scale(0.8); */
-}
+ transform: scale(0.8); 
+}*/
 .slider > a {
   display: inline-flex;
   width: 1.5rem;
@@ -1276,4 +1277,15 @@ section.loading-screen > div {
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+#info {
+  display: none;
+}
+
+#restart{
+  margin: auto;
+/*   margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto; */
 }

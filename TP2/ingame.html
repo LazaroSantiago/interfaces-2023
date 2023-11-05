@@ -120,14 +120,26 @@
             <img class="share-button" src="images/icons/share.svg" alt="" />
           </div>
           <div class="game">
-            <div class="menu">
 
+            <div id="info" class="container-fluid col-4 info">
+              <div class="info-div">
+                <div id="turn" class="hidden">
+                  <h3>Turno: Jugador 1 </h3>
+                </div>
+                <div id="timer" class="hidden">
+                  <h3>Tiempo restante: <span id="time"> 5:00 </span> </h3>
+                </div>
+              </div>
 
+              <button id="restart" type="button" class="btn btn-outline-light hidden">
+                <h2>Reiniciar</h2>
+              </button>
+            </div>
 
+            <div class="menu" id="menu">
 
               <div class="container-fluid config col-4">
                 <div class="row col-6">
-
                   <h3 id="infoMode">Modo 4 en linea: </h3>
                   <div>
                     <button id="mode4" type="button" class="selected btn btn-outline-light">
@@ -147,21 +159,13 @@
                   <button id="start" type="button" class="btn btn-outline-light">
                     <h2>Comenzar</h2>
                   </button>
-                  <button id="restart" type="button" class="btn btn-outline-light hidden">
-                    <h2>Reiniciar</h2>
-                  </button>
+
                 </div>
                 <div class="col-1"></div>
+              </div>
 
-              </div>
-              <div id="info" class="container-fluid col-4 info">
-                <div id="turn" class="hidden">
-                  <h3>Turno: Jugador1 </h3>
-                </div>
-                <div id="timer" class="hidden">
-                  <h3>Tiempo restante: <span id="time"> 5:00 </span> </h3>
-                </div>
-              </div>
+
+              
               <div class="container-fluid tokens col-4">
                 <table>
                   <tr>
@@ -198,10 +202,8 @@
             </div>
             <div class="canvas">
               <canvas class="nonClickable" id="gameCanvas" width="986" height="544" ></canvas>
-              <!-- width="986" height="544" -->
             </div>
             <img src='images/game-images/casilleroVacio.png' id="casillero" style="display: none;">
-            <!-- <img src="images/game-image.png" alt="" /> -->
           </div>
         </article>
       </section>
