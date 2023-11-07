@@ -160,6 +160,7 @@ function piecesGamer(player, posY, posX, img, size){             // genera un ob
     let posYInic = posY;
     let posXInic = posX;
     let cont = 1;
+    
     for (let i = 0; i<((rows * columns)/2); i++){
    
         let ficha = new Circle(posXInic, posYInic, size, color, ctx, img, player);

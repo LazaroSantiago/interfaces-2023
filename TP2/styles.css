@@ -1284,6 +1284,7 @@ section.loading-screen > div {
 
 #info {
   display: none;
+  min-height: 145px;
 }
 
 #restart{

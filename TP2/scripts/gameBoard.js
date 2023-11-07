@@ -128,7 +128,7 @@ class gameBoard {
     changeTurn(){                   //Cambia el turno de jugador
         turn++;
         player=(turn%2)+1;
-        document.getElementById("turn").innerHTML= "<h2>Turno: Jugador " + player + "</h2>";
+        document.getElementById("turn").innerHTML= "<h2>Turno Jugador " + player + "</h2>";
     }
 
     //verify

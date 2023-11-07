@@ -42,32 +42,34 @@ function start(){
     let player1 = 1;
     let player2 = 2;
     let tokenSize = 20;
-    let posX = 45;
+    let posY = 45;
+    let posX = 500;
 
     switch (mode) {  //genera las fichas en base al modo de juego
         case 6:
             columns = 9;
             rows = 8;
 
-            piecesGamer(player1, 765, posX, token1, tokenSize); // cargo en un arreglo las fichas del jugador 1
-            piecesGamer(player2, 765, 1280, token2, tokenSize); // cargo en un arreglo las fichas del jugador 2
+            piecesGamer(player1, posX, posY, token1, tokenSize); // cargo en un arreglo las fichas del jugador 1
+            piecesGamer(player2, posX, 650, token2, tokenSize); // cargo en un arreglo las fichas del jugador 2
             break;
         case 5:
             columns = 8;
             rows = 7;
 
-            piecesGamer(player1, 685, posX, token1, tokenSize);
-            piecesGamer(player2, 685, 1280, token2, tokenSize); 
+            piecesGamer(player1, posX, posY, token1, tokenSize);
+            piecesGamer(player2, posX, 620, token2, tokenSize); 
             break;
         default:
             columns = 7;
             rows = 6;
-
-            piecesGamer(player1, 605, posX, token1, tokenSize);
-            piecesGamer(player2, 605, 600, token2, tokenSize);   
+            let a = piecesGamer(player1, posX, posY, token1, tokenSize);
+            piecesGamer(player2, posX, 600, token2, tokenSize);   
         break;
     }
 
+
+    
     changeMenues(); 
     game = new gameBoard(columns, rows);    //Instancia un tablero
     game.buildBoard();                   //Arma el tablero
@@ -77,8 +79,6 @@ function start(){
     document.getElementById("turn").toggleAttribute("class");
     document.getElementById("timer").toggleAttribute("class");
     timer = setInterval(updateTime, 1000);  //Inicia el temporizador
-
-
 
 }
 

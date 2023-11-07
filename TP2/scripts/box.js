@@ -21,7 +21,6 @@ class box{
         let posX = this.getPosX();
         let posY = this.getPosY();
         let size = this.size;
-        // console.log(document.getElementById("casillero"), posX, (posY+(size*2)), size, size)
         ctx.drawImage(document.getElementById("casillero"), posX, (posY+(size*2)), size, size);
     }
 
